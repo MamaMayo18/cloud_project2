@@ -86,7 +86,7 @@
             const userId = document.querySelector('input[name="userId"]').value;
             const vote = document.querySelector('input[name="vote"]:checked').value;
             try {
-                const response = await fetch('https://cloud118.azurewebsites.net/api/HttpTrigger1', {
+                const response = await fetch('https://uniquename118.azurewebsites.net/api/HttpTrigger1?', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
