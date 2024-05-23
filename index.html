@@ -1,110 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voting App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: #0073e6;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        label {
-            margin: 10px 0;
-            font-size: 18px;
-        }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #0073e6;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #005bb5;
-        }
-        .message {
-            margin-top: 20px;
-            font-size: 16px;
-        }
-        input[type="text"] {
-            padding: 10px;
-            margin: 10px 0;
-            width: 80%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Vote for Your Favorite Option</h1>
-        <form id="voteForm">
-            <input type="text" name="userName" placeholder="Enter your name" required>
-            <input type="text" name="userId" placeholder="Enter your ID" required>
-            <label>
-                <input type="radio" name="vote" value="Option1" required> Option 1
-            </label>
-            <label>
-                <input type="radio" name="vote" value="Option2" required> Option 2
-            </label>
-            <button type="submit">Submit Vote</button>
-        </form>
-        <div class="message" id="message"></div>
-    </div>
-    <script>
-        document.getElementById('voteForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const userName = document.querySelector('input[name="userName"]').value;
-            const userId = document.querySelector('input[name="userId"]').value;
-            const vote = document.querySelector('input[name="vote"]:checked').value;
-            try {
-                const response = await fetch('https://uniquename118.azurewebsites.net/api/HttpTrigger1?', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ userName, userId, vote })
-                });
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const result = await response.json();
-                document.getElementById('message').textContent = result.message;
-                document.getElementById('message').style.color = 'green';
-            } catch (error) {
-                document.getElementById('message').textContent = 'An error occurred while submitting your vote.';
-                document.getElementById('message').style.color = 'red';
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        });
-    </script>
+    <h1>Vote for Your Favorite Option</h1>
+    <form id="voteForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="uid">UID:</label>
+        <input type="text" id="uid" name="uid" required><br>
+        <label for="vote">Vote:</label>
+        <select id="vote" name="vote">
+            <option value="Option1">Option 1</option>
+            <option value="Option2">Option 2</option>
+        </select><br>
+        <button type="button" onclick="submitVote()">Submit</button>
+    </form>
+    <script src="scripts.js"></script>
 </body>
 </html>
