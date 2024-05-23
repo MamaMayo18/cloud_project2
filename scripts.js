@@ -3,7 +3,7 @@ function submitVote() {
     const uid = document.getElementById('uid').value;
     const vote = document.getElementById('vote').value;
 
-    fetch('https://https://pythoncloud.azurewebsites.net/api/http_trigger1?', {
+    fetch('https://pythoncloud.azurewebsites.net/api/http_trigger1?', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
